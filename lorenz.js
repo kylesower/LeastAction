@@ -104,7 +104,7 @@ const lorenz = ( sketch ) => {
 
 }
 
-let myp5 = new p5(s, document.getElementById('lorenz'))
+let myp5 = new p5(lorenz, document.getElementById('lorenz'))
 
 function rotate_x(x, y, z) {
 	theta = xspeed*myp5.frameCount;
@@ -244,4 +244,11 @@ function plot_vel_update(cb) {
     vzarray[i] = a.vz*vscale// + offset;
   }
   plot_vels = cb.checked;
+}
+
+
+function keyPressed() {
+  if (myp5.keyCode === myp5.ENTER) {
+  	update_lorenz();
+  }
 }
