@@ -78,10 +78,11 @@
   <label for="rk4">RK4</label><br>-->
   Plots: <label><input type="checkbox" id="plot_t" name="tplot" value="tplot" onclick="plot_t_box_update(this)" class="checkbox">$\theta_1$ vs. $\theta_2$</label>
   <label><input type="checkbox" id="plot_w" name="wplot" value="wplot" onclick="plot_w_box_update(this)" class="checkbox">$\omega_1$ vs. $\omega_2$</label>
-<p>
-  <script src="sketch.js"></script>
-  <script src="pendulum.js"></script>
-</p>
+
+  <div id="pendulum">
+    <script src="sketch.js"></script>
+    <script src="pendulum.js"></script>
+  </div>
 </div>
 </body>
 </html>

@@ -54,16 +54,16 @@ function pend(theta1_init, w1_init, l1, m1, theta2_init, w2_init, l2, m2) {
   }
 
   this.show = function() {
-    fill(255);
-    strokeWeight(1);
-    stroke(100);
-    line(width/2, height/2, this.x1, this.y1);
-    fill(50,150,200);
-    circle(this.x1, this.y1, rad);
-    stroke(100);
-    line(this.x1, this.y1, this.x2, this.y2);
-    fill(50,150,200);
-    circle(this.x2, this.y2, rad);
+    pendinst.fill(255);
+    pendinst.strokeWeight(1);
+    pendinst.stroke(100);
+    pendinst.line(width/2, height/2, this.x1, this.y1);
+    pendinst.fill(50,150,200);
+    pendinst.circle(this.x1, this.y1, rad);
+    pendinst.stroke(100);
+    pendinst.line(this.x1, this.y1, this.x2, this.y2);
+    pendinst.fill(50,150,200);
+    pendinst.circle(this.x2, this.y2, rad);
   }
 }
 
