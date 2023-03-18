@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css">
+	<head>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<script>
+			MathJax = {
+			  tex: {
+			    inlineMath: [['$', '$'], ['\\(', '\\)']],
+			    tags: 'ams'
+			  },
+			  svg: {
+			    fontCache: 'global'
+			  },
+			  displayAlign: "left"
+			};
+		</script>
+		<meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+	</head>
+	 <div class="header">
+  		<div class="header-left">
+    		<a class="active" href="/">Physics</a>
+    		<!--<a href="nature.html">Nature</a>-->
+    		<!--<a href="vaccines.html">Trust the Science</a>-->
+    		<a href="simulations.html">Simulations</a>
+  		</div>
+	</div> 
+
+<body>
+<ol type="decimal">
+	<li><a href="#dalembert">d'Alembert's Principle</a></li>
+	<li><a href="#principle_of_least_action">Principle of Least Action</a></li>
+	<li><a href="#calculus_variations">Calculus of Variations</a></li>
+	<li><a href="#mass_spring">Mass on a Spring</a></li>
+	<li><a href="#constraints">Constraints</a></li>
+</ol>
+<h1 id="dalembert">d'Alembert's Principle</h1>
+	<p>
+		TODO: write section on d'Alembert's Principle.
+	</p><br>
+<h1 id="principle_of_least_action">Principle of Least Action</h1>
+	<p>
+		The action is defined as 
+		\[S = \int_{t_1}^{t_2} L(q,\dot{q}, t)dt,\] 
+		where \(L \equiv T-U\) is the Lagrangian, $q$ is a
+		generalized coordinate, and $\dot{q}$ is a generalized
+		velocity. This is an integral over a path defined by \(q\) and $\dot{q}$. The principle of least action states that the equations of motion are defined by minimizing the action:
+		\[\delta S = 0.\]
+	</p><br>
+<h1 id="calculus_variations">Calculus of Variations</h1>
+	<p> 
+		In order to minimize such an integral (or "functional" in math world), we need to apply calculus of variations. We can think of the integral as a path in phase space from the point $(q_1, \dot{q_1})$ to $(q_2, \dot{q_2}).$ Suppose $q(t)$ defines the true path that minimizes $S$. We add another function $\delta q(t)$ to $q$ with the constraint that $\delta q (t_1) = \delta q (t_2) = 0$ since the points $q_1$ and $q_2$ are predefined. The resulting change in action is
+		\[\delta S = S(q+\delta q, \dot{q} + \delta \dot q, t) - S(q,\dot q , t).\]
+		To evaluate the right hand side, we can expand $S$ in its derivates and take only the leading terms.
+		\[\delta S = \frac{\partial S}{\partial q}\delta q + \frac{\partial S}{\partial \dot{q}}\delta \dot q.\]
+		Plugging this into the integral form yields
+		\[\delta S = \int_{t_1}^{t_2} \left(\frac{\partial L}{\partial q} + \frac{\partial L}{\partial \dot{q}}\frac{d}{dt}\right) \delta q dt.\]
+		Applying integration by parts to the second term,
+		\[\delta S = \int_{t_1}^{t_2} \left(\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}\right) \delta q dt + \delta q\frac{\partial L}{\partial \dot{q}}\bigg\rvert_{t_1}^{t_2}.\]
+		The boundary term from the integral is $0$ because $\delta q$ doesn't change the path at the boundaries. Therefore, 
+		\[\int_{t_1}^{t_2} \left(\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}\right)\delta q dt = 0.\]
+		Then, because the integral must be 0 for all values of $\delta q$,
+		\[\frac{d}{dt}\frac{\partial L}{\partial \dot{q}}-\frac{\partial L}{\partial q}  = 0.\]
+		Extending the calculation to the multi-dimensional case is left as an exercise for the reader. Doing so yields the equations of motion for the system:
+		\begin{equation} \frac{d}{dt}\frac{\partial L}{\partial \dot{q_i}}-\frac{\partial L}{\partial q_i} = 0.\end{equation}
+	</p><br>
+<h1 id="mass_spring">Mass on a Spring</h1>
+	<p>
+		The most classic example in physics must be analyzed first. In this case, we have
+		\[
+		T = \frac{1}{2}m\dot q ^2,\text{ }
+		U = \frac{1}{2}kq^2.
+		\]
+		Therefore,
+		\begin{equation*}L = T - U = \frac{1}{2}(m\dot q^2 - k q^2).\end{equation*}
+		Plugging this into (1) gives
+		\begin{gather*} m\ddot{q} + kq = 0, \\
+		\ddot q = -\underbrace{\dfrac{k}{m}}_{\omega^2}q.
+		 \end{gather*}
+		The solution here is as expected:
+		\begin{equation*}
+		q(t) = c_1 \sin(\omega t) + c_2 \cos(\omega t).
+		\end{equation*}
+	</p><br>
+<h1 id="constraints">Constraints</h1>
+	<p>
+		A holonomic constraint can be written in the form $f(q_1, q_2, ..., q_N, t) = 0$. A nonholonomic constraint is any constraint inexpressible in this manner (e.g. an inequality). Holonomic constraints can be incorporated into the system using <b>Lagrange Multipliers</b>. We first rewrite the action integral
+		\begin{equation*}
+		S = \int_{t_1}^{t_2}\left( L+\sum_{j=1}^{m}\lambda_j f_j \right)dt,
+		\end{equation*}
+		where $f_i$ is the ${i}^{th}$ constraint equation and $m$ is the number of constraints. Applying the variations to the coordinates,
+		\begin{equation*}
+		\delta S = \int_{t_1}^{t_2} \sum_{i=1}^N\left( \frac{d}{dt}\frac{\partial L}{\partial \dot q_i} - \frac{\partial L}{\partial q_i} + \sum_{j=1}^m \lambda_j \frac{\partial f_j}{\partial q_i} \right)\delta q_i dt = 0.
+		\end{equation*}
+		This requires each term of the first sum to independently be zero. This provides us the Euler-Lagrange equation with constraints:
+		\begin{equation}
+			 \frac{d}{dt}\frac{\partial L}{\partial \dot q_i} - \frac{\partial L}{\partial q_i} + \sum_{j=1}^m \lambda_j \frac{\partial f_j}{\partial q_i} = 0.
+		\end{equation}
+		A simple example can be demonstrated using a mass $m$ on a pendulum length $l$.
+		\begin{equation*}
+		L = \frac{1}{2}mr^2\dot \theta^2 - mgr(1-\cos \theta),
+		\end{equation*}
+		where I am intentionally not substituting $r$ for $l$. This Lagrangian is subject to the constraint that 
+		\begin{equation*}
+		r - l = 0.
+		\end{equation*}
+		Noting that the sign on $\lambda$ is arbitrary, the equations of motion are
+		\begin{gather*}
+		\frac{d}{dt}\frac{\partial L}{\partial \dot r} - \frac{\partial L}{\partial r} = \lambda \frac{\partial}{\partial r}\left[r-l\right],\\
+		\frac{d}{dt}\frac{\partial L}{\partial \dot \theta} - \frac{\partial L}{\partial \theta} = \lambda \frac{\partial}{\partial \theta}\left[r-l\right].
+		\end{gather*}
+		Substituting in the Lagrangian,
+		\begin{gather*}
+		mr\dot \theta^2 + mg(1-\cos\theta) = \lambda,\\
+		mr^2 \ddot \theta + mgr \sin \theta= 0.
+		\end{gather*}
+		Applying the small angle approximation and now plugging in $r=l$,
+		\begin{gather*}
+		ml\dot \theta^2 = \lambda,\\
+		ml^2 \ddot \theta + mgl\theta = 0.
+		\end{gather*}
+		The first equation tells us the magnitude of the force acting on the mass to maintain the constraint, and the second is the usual equation of motion for a simple pendulum.
+	</p><br>
+<br><br><br>
+<h1>Proof by Demonstration</h1>
+<p>
+    <video controls alt="A Lazy Ball with Minimal Action">
+        <source src="loopdeloop.mp4" type="video/mp4">
+    </video>
+</p>
+</body>
+</html>
