@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="style.css">
-	<head>
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-		<script>
-			MathJax = {
-			  tex: {
-			    inlineMath: [['$', '$'], ['\\(', '\\)']],
-			    tags: 'ams'
-			  },
-			  svg: {
-			    fontCache: 'global'
-			  },
-			  displayAlign: "left"
-			};
-		</script>
-		<meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
-	</head>
-	 <div class="header">
-  		<div class="header-left">
-    		<a class="active" href="/">Physics</a>
-    		<!--<a href="nature.html">Nature</a>-->
-    		<!--<a href="vaccines.html">Trust the Science</a>-->
-    		<a href="simulations.html">Simulations</a>
-  		</div>
-	</div> 
+<head>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script>
+		MathJax = {
+		  tex: {
+		    inlineMath: [['$', '$'], ['\\(', '\\)']],
+		    tags: 'ams'
+		  },
+		  svg: {
+		    fontCache: 'global'
+		  },
+		  displayAlign: "left"
+		};
+	</script>
+	<meta name="viewport" content=
+    "width=device-width, initial-scale=1.0">
+</head>
+ <div class="header">
+		<div class="header-left">
+		<a class="active" href="/">Physics</a>
+		<!--<a href="nature.html">Nature</a>-->
+		<!--<a href="vaccines.html">Trust the Science</a>-->
+		<a href="simulations.html">Simulations</a>
+		</div>
+</div> 
 
 <body>
-<ol type="decimal">
-	<li><a href="#dalembert">d'Alembert's Principle</a></li>
-	<li><a href="#principle_of_least_action">Principle of Least Action</a></li>
-	<li><a href="#calculus_variations">Calculus of Variations</a></li>
-	<li><a href="#mass_spring">Mass on a Spring</a></li>
-	<li><a href="#constraints">Constraints</a></li>
-</ol>
-<h1 id="dalembert">d'Alembert's Principle</h1>
+	<ol type="decimal">
+		<li><a href="#dalembert">d'Alembert's Principle</a></li>
+		<li><a href="#principle_of_least_action">Principle of Least Action</a></li>
+		<li><a href="#calculus_variations">Calculus of Variations</a></li>
+		<li><a href="#mass_spring">Mass on a Spring</a></li>
+		<li><a href="#constraints">Constraints</a></li>
+	</ol>
+	<h1 id="dalembert">d'Alembert's Principle</h1>
 	<p>
 		TODO: write section on d'Alembert's Principle.
 	</p><br>
-<h1 id="principle_of_least_action">Principle of Least Action</h1>
+	<h1 id="principle_of_least_action">Principle of Least Action</h1>
 	<p>
 		The action is defined as 
 		\[S = \int_{t_1}^{t_2} L(q,\dot{q}, t)dt,\] 
@@ -49,7 +49,7 @@
 		velocity. This is an integral over a path defined by \(q\) and $\dot{q}$. The principle of least action states that the equations of motion are defined by minimizing the action:
 		\[\delta S = 0.\]
 	</p><br>
-<h1 id="calculus_variations">Calculus of Variations</h1>
+	<h1 id="calculus_variations">Calculus of Variations</h1>
 	<p> 
 		In order to minimize such an integral (or "functional" in math world), we need to apply calculus of variations. We can think of the integral as a path in phase space from the point $(q_1, \dot{q_1})$ to $(q_2, \dot{q_2}).$ Suppose $q(t)$ defines the true path that minimizes $S$. We add another function $\delta q(t)$ to $q$ with the constraint that $\delta q (t_1) = \delta q (t_2) = 0$ since the points $q_1$ and $q_2$ are predefined. The resulting change in action is
 		\[\delta S = S(q+\delta q, \dot{q} + \delta \dot q, t) - S(q,\dot q , t).\]
@@ -66,7 +66,7 @@
 		Extending the calculation to the multi-dimensional case is left as an exercise for the reader. Doing so yields the equations of motion for the system:
 		\begin{equation} \frac{d}{dt}\frac{\partial L}{\partial \dot{q_i}}-\frac{\partial L}{\partial q_i} = 0.\end{equation}
 	</p><br>
-<h1 id="mass_spring">Mass on a Spring</h1>
+	<h1 id="mass_spring">Mass on a Spring</h1>
 	<p>
 		The most classic example in physics must be analyzed first. In this case, we have
 		\[
@@ -84,7 +84,7 @@
 		q(t) = c_1 \sin(\omega t) + c_2 \cos(\omega t).
 		\end{equation*}
 	</p><br>
-<h1 id="constraints">Constraints</h1>
+	<h1 id="constraints">Constraints</h1>
 	<p>
 		A holonomic constraint can be written in the form $f(q_1, q_2, ..., q_N, t) = 0$. A nonholonomic constraint is any constraint inexpressible in this manner (e.g. an inequality). Holonomic constraints can be incorporated into the system using <b>Lagrange Multipliers</b>. We first rewrite the action integral
 		\begin{equation*}
@@ -123,7 +123,7 @@
 		\end{gather*}
 		The first equation tells us the magnitude of the force acting on the mass to maintain the constraint, and the second is the usual equation of motion for a simple pendulum.
 	</p><br>
-<br><br><br>
+	<br><br><br>
 <!--
 <h1>Proof by Demonstration</h1>
 <p>
