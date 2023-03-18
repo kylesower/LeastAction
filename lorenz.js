@@ -13,7 +13,7 @@ const lorenz = ( sketch ) => {
 		vxarray = [];
 		vyarray = [];
 		vzarray = [];
-		num = 4000;
+		num_l = 2000;
 		play_animation_lorenz = false;
 		plot_coords = true;
 		plot_vels = true;
@@ -31,7 +31,7 @@ const lorenz = ( sketch ) => {
 	  	vx0 = a.vx;
 	  	vy0 = a.vy;
 	  	vz0 = a.vz;
-	  	for (let i=0; i<num; i++) {
+	  	for (let i=0; i<num_l; i++) {
 		    xarray[i] = x0*scale
 		    yarray[i] = y0*scale
 		    zarray[i] = z0*scale
@@ -62,7 +62,7 @@ const lorenz = ( sketch ) => {
 	sketch.draw = () => {
 		sketch.background(51);
 		if (play_animation_lorenz){
-			for ( let i = 1; i < num; i++ ) {
+			for ( let i = 1; i < num_l; i++ ) {
 			    xarray[i - 1] = xarray[i];
 			    yarray[i - 1] = yarray[i];
 			    zarray[i - 1] = zarray[i];
@@ -71,15 +71,15 @@ const lorenz = ( sketch ) => {
 			    vzarray[i - 1] = vzarray[i];
 		 	}
 			a.update();
-			xarray[num - 1] = a.x*scale;
-		 	yarray[num - 1] = a.y*scale;
-		 	zarray[num - 1] = a.z*scale;
-		 	vxarray[num - 1] = a.vx*vscale;
-		 	vyarray[num - 1] = a.vy*vscale;
-		 	vzarray[num - 1] = a.vz*vscale;
+			xarray[num_l - 1] = a.x*scale;
+		 	yarray[num_l - 1] = a.y*scale;
+		 	zarray[num_l - 1] = a.z*scale;
+		 	vxarray[num_l - 1] = a.vx*vscale;
+		 	vyarray[num_l - 1] = a.vy*vscale;
+		 	vzarray[num_l - 1] = a.vz*vscale;
 
 		 	if (plot_coords){
-			 	for ( let j = 1; j < num; j++ ) {
+			 	for ( let j = 1; j < num_l; j++ ) {
 			        sketch.stroke(zarray[j]/2, 20, 250);
 			        prevcoords = rotate_x(xarray[j - 1]-cpx, yarray[j - 1]-cpy, zarray[j - 1]-cpz);
 			        prevcoords = rotate_y(...prevcoords);
@@ -89,7 +89,7 @@ const lorenz = ( sketch ) => {
 			    }
 			}
 			if (plot_vels) {
-			    for ( let j = 1; j < num; j++ ) {
+			    for ( let j = 1; j < num_l; j++ ) {
 			        sketch.stroke(220, (200+vzarray[j])/2, 40);
 			        prevcoords = rotate_x(vxarray[j - 1], vyarray[j - 1], vzarray[j - 1]);
 			        prevcoords = rotate_y(...prevcoords);
@@ -103,7 +103,7 @@ const lorenz = ( sketch ) => {
 
 }
 
-let myp5 = new p5(lorenz, document.getElementById('lorenz'))
+let myp5 = new p5(lorenz, document.getElementById('lorenz'));
 
 function rotate_x(x, y, z) {
 	theta = xspeed*myp5.frameCount;
@@ -173,7 +173,13 @@ function attractor (x, y, z, sigma, rho, beta){
 
 function update_lorenz() {
 	play_animation_lorenz = true;
-	
+	stop_pend();
+	xarray = [];
+	yarray = [];
+	zarray = [];
+	vxarray = [];
+	vyarray = [];
+	vzarray = [];
   	x_input =  parseFloat(document.getElementById("x0").value);
  	y_input =  parseFloat(document.getElementById("y0").value);
  	z_input =  parseFloat(document.getElementById("z0").value);
@@ -204,7 +210,7 @@ function update_lorenz() {
       	!isNaN(sigma_input) && !isNaN(beta_input) && !isNaN(rho_input)) {
       a.set_new_params(x_input, y_input, z_input, sigma_input, rho_input, beta_input);
 
-      for (let i=0; i<num; i++) {
+      for (let i=0; i<num_l; i++) {
         xarray[i] = a.x*scale;
         yarray[i] = a.y*scale;
         zarray[i] = a.z*scale;
@@ -224,11 +230,18 @@ function stop_lorenz() {
   	document.getElementById("sigma").value = sigma;
   	document.getElementById("rho").value = rho;
   	document.getElementById("beta").value = beta;
+  	delete(myp5);
+  	delete(xarray);
+  	delete(yarray);
+  	delete(zarray);
+  	delete(vxarray);
+  	delete(vyarray);
+  	delete(vzarray);
 }
 
 
 function plot_coord_update(cb) {
-  for (let i=0; i<num; i++) {
+  for (let i=0; i<num_l; i++) {
    	xarray[i] = a.x*scale// + offset;
     yarray[i] = a.y*scale// + offset;
     zarray[i] = a.z*scale// + offset;
@@ -238,7 +251,7 @@ function plot_coord_update(cb) {
 
 
 function plot_vel_update(cb) {
-  for (let i=0; i<num; i++) {
+  for (let i=0; i<num_l; i++) {
 	vxarray[i] = a.vx*vscale// + offset;
     vyarray[i] = a.vy*vscale// + offset;
     vzarray[i] = a.vz*vscale// + offset;
@@ -247,8 +260,14 @@ function plot_vel_update(cb) {
 }
 
 
-function keyPressed() {
-  if (myp5.keyCode === myp5.ENTER) {
-  	update_lorenz();
-  }
-}
+// function keyPressed() {
+//   if (myp5.keyCode === myp5.ENTER) {
+//   	update_lorenz();
+//   }
+// }
+
+
+
+//delete(myp5.draw);
+//delete(myp5.sketch);
+
