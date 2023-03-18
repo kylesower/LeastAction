@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Expires" content="Tue, 01 Jan 1995 12:12:12 GMT">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'ams',
+          color: 'white'
+        },
+        svg: {
+          fontCache: 'global'
+          
+        },
+        displayAlign: "left"
+      };
+    </script>
+	<title>Lorenz</title>
+</head>
+<body>
+
+	<button type="submit" id="button1" onmousedown="update_lorenz();">Start/Update</button>
+	<button type="submit" id="button2" onmousedown="stop_lorenz();">Stop</button><br>
+	<div>
+	  <table class="inputTable">
+    	<tr>
+	    	<td><span class="searchLabel">$x_0$:</span></td>
+      		<td><input name="x0" type="text" maxlength="20" id="x0" class="searchField"/></td>
+      		<td><span class="searchLabel">$\sigma$:</span></td>
+      		<td><input name="sigma" type="text" maxlength="20" id="sigma" class="searchField"/></td>
+    	</tr>
+    	<tr>
+      		<td><span class="searchLabel">$y_0$:</span></td>
+      		<td><input name="y0" type="text" maxlength="20" id="y0" class="searchField"/></td>
+      		<td><span class="searchLabel">$\rho$:</span></td>
+      		<td><input name="rho" type="text" maxlength="20" id="rho" class="searchField"/></td>
+    	</tr>
+    	<tr>
+      		<td><span class="searchLabel">$z_0$:</span></td>
+      		<td><input name="z0" type="text" maxlength="20" id="z0" class="searchField"/></td>
+      		<td><span class="searchLabel">$\beta$:</span></td>
+      		<td><input name="beta" type="text" maxlength="20" id="beta" class="searchField"/></td>
+    	</tr>
+</table>
+Plots: <label><input type="checkbox" id="plot_coords" name="plot_coords" value="plot_coords" onclick="plot_coord_update(this)" class="checkbox">Coordinates</label>
+  <label><input type="checkbox" id="plot_vels" name="plot_vels" value="plot_vels" onclick="plot_vel_update(this)" class="checkbox">Velocities</label>
+</div>
+<div>
+
+  <script src="lorenz.js"></script>
+ </div>
+
+</body>
+</html>
