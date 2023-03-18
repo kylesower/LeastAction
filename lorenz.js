@@ -7,7 +7,6 @@ const lorenz = ( sketch ) => {
 		sigma = 10;
 		rho = 25;
 		beta = 7/3;
-		dt = 2;
 		xarray = [];
 		yarray = [];
 		zarray = [];
@@ -28,7 +27,7 @@ const lorenz = ( sketch ) => {
 	  	zspeed = 0.01;
 	  	sketch.createCanvas(width, height);
 	  	sketch.frameRate(60);
-	  	a = new attractor(x0, y0, z0, sigma, rho, beta);
+	  	a = new attractor(x0, y0, z0, sigma, rho, beta, dt);
 	  	vx0 = a.vx;
 	  	vy0 = a.vy;
 	  	vz0 = a.vz;
@@ -140,10 +139,11 @@ function attractor (x, y, z, sigma, rho, beta){
 	this.cx2 = -this.cx1;
 	this.cy2 = -this.cy1;
 	this.cz2 = this.cz1;
-	this.dt = dt/Math.sqrt(this.vx**2 + this.vy**2 + this.vz**2);
+	this.dt_raw = 2
+	this.dt = this.dt_raw/Math.sqrt(this.vx**2 + this.vy**2 + this.vz**2);
 
 	this.update = function() {
-		this.dt = dt/Math.sqrt(this.vx**2 + this.vy**2 + this.vz**2);
+		this.dt = this.dt_raw/Math.sqrt(this.vx**2 + this.vy**2 + this.vz**2);
 		this.vx = this.sigma*(this.y - this.x);
 		this.x = this.x + this.vx*this.dt;
 		this.vy = this.x*(this.rho-this.z)-this.y;

@@ -84,5 +84,41 @@
     <script src="pendulum.js"></script>
   </div>
 </div>
+<br><br>
+
+<div>
+
+  <button type="submit" id="button1" onmousedown="update_lorenz();">Start/Update</button>
+  <button type="submit" id="button2" onmousedown="stop_lorenz();">Stop</button><br>
+  <div>
+    <table class="inputTable">
+      <tr>
+        <td><span class="searchLabel">$x_0$:</span></td>
+          <td><input name="x0" type="text" maxlength="20" id="x0" class="searchField"/></td>
+          <td><span class="searchLabel">$\sigma$:</span></td>
+          <td><input name="sigma" type="text" maxlength="20" id="sigma" class="searchField"/></td>
+      </tr>
+      <tr>
+          <td><span class="searchLabel">$y_0$:</span></td>
+          <td><input name="y0" type="text" maxlength="20" id="y0" class="searchField"/></td>
+          <td><span class="searchLabel">$\rho$:</span></td>
+          <td><input name="rho" type="text" maxlength="20" id="rho" class="searchField"/></td>
+      </tr>
+      <tr>
+          <td><span class="searchLabel">$z_0$:</span></td>
+          <td><input name="z0" type="text" maxlength="20" id="z0" class="searchField"/></td>
+          <td><span class="searchLabel">$\beta$:</span></td>
+          <td><input name="beta" type="text" maxlength="20" id="beta" class="searchField"/></td>
+      </tr>
+</table>
+Plots: <label><input type="checkbox" id="plot_coords" name="plot_coords" value="plot_coords" onclick="plot_coord_update(this)" class="checkbox">Coordinates</label>
+  <label><input type="checkbox" id="plot_vels" name="plot_vels" value="plot_vels" onclick="plot_vel_update(this)" class="checkbox">Velocities</label>
+</div>
+<div id="lorenz">
+  <script src="lorenz.js"></script>
+ </div>
+
+
+</div>
 </body>
 </html>

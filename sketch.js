@@ -1,15 +1,15 @@
 function plot_t_box_update(cb) {
   for (let i=0; i<num; i++) {
-    t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale + offset;
-    t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale + offset;
+    t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;
+    t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;
   }
   plot_t = cb.checked;
 }
 
 function plot_w_box_update(cb) {
   for (let i=0; i<num; i++) {
-    w1array[i] = (p.w1+wmax)*wscale + offset;
-    w2array[i] = (p.w2+wmax)*wscale + offset;
+    w1array[i] = (p.w1+wmax)*wscale;// + offset;
+    w2array[i] = (p.w2+wmax)*wscale;// + offset;
   }
   plot_w = cb.checked;
 }
@@ -75,10 +75,10 @@ const pendp5 = ( sketch ) => {
     document.getElementById("plot_t").checked = true;
     document.getElementById("plot_w").checked = true;
     for (let i=0; i<num; i++) {
-      w1array[i] = (p.w1+wmax)*wscale + offset;
-      w2array[i] = (p.w2+wmax)*wscale + offset;
-      t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale + offset;//p.theta1*tscale + offset;
-      t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale + offset;//p.theta2*tscale + offset;
+      w1array[i] = (p.w1+wmax)*wscale;// + offset;
+      w2array[i] = (p.w2+wmax)*wscale;// + offset;
+      t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta1*tscale + offset;
+      t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta2*tscale + offset;
     }
   }
 
@@ -94,10 +94,10 @@ const pendp5 = ( sketch ) => {
 
     if(play_animation){
         p.update();
-        w1array[num - 1] = (p.w1+wmax)*wscale + offset;
-        w2array[num - 1] = (p.w2+wmax)*wscale + offset;
-        t1array[num - 1] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale + offset;//p.theta1*tscale + offset;
-        t2array[num - 1] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale + offset;//p.theta2*tscale + offset;
+        w1array[num - 1] = (p.w1+wmax)*wscale;// + offset;
+        w2array[num - 1] = (p.w2+wmax)*wscale;// + offset;
+        t1array[num - 1] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta1*tscale + offset;
+        t2array[num - 1] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta2*tscale + offset;
         if(plot_w){
           for ( let j = 1; j < num; j++ ) {
             val = j / num * 204.0;
@@ -189,10 +189,10 @@ function update_params(){
   	  wmax = calc_w_scale(p);
   	  wscale = width/(2*wmax);
       for (let i=0; i<num; i++) {
-        w1array[i] = (omega1_input+wmax)*wscale + offset;
-        w2array[i] = (omega2_input+wmax)*wscale + offset;
-        t1array[i] = (theta1_input + Math.PI) % (2*Math.PI)*tscale + offset;
-        t2array[i] = (theta2_input + Math.PI) % (2*Math.PI)*tscale + offset;
+        w1array[i] = (omega1_input+wmax)*wscale;// + offset;
+        w2array[i] = (omega2_input+wmax)*wscale;// + offset;
+        t1array[i] = (theta1_input + Math.PI) % (2*Math.PI)*tscale;// + offset;
+        t2array[i] = (theta2_input + Math.PI) % (2*Math.PI)*tscale;// + offset;
       }
     }
 }
