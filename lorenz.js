@@ -246,9 +246,9 @@ function stop_lorenz() {
 
 function plot_coord_update(cb) {
   for (let i=0; i<num_l; i++) {
-   	xarray[i] = a.x*scale// + offset;
-    yarray[i] = a.y*scale// + offset;
-    zarray[i] = a.z*scale// + offset;
+   	xarray[i] = a.x*scale;
+    yarray[i] = a.y*scale;
+    zarray[i] = a.z*scale;
   }
   plot_coords = cb.checked;
 }
@@ -256,22 +256,9 @@ function plot_coord_update(cb) {
 
 function plot_vel_update(cb) {
   for (let i=0; i<num_l; i++) {
-	vxarray[i] = a.vx*vscale// + offset;
-    vyarray[i] = a.vy*vscale// + offset;
-    vzarray[i] = a.vz*vscale// + offset;
+	vxarray[i] = a.vx*vscale;
+    vyarray[i] = a.vy*vscale;
+    vzarray[i] = a.vz*vscale;
   }
   plot_vels = cb.checked;
 }
-
-
-// function keyPressed() {
-//   if (myp5.keyCode === myp5.ENTER) {
-//   	update_lorenz();
-//   }
-// }
-
-
-
-//delete(myp5.draw);
-//delete(myp5.sketch);
-

@@ -1,15 +1,15 @@
 function plot_t_box_update(cb) {
     for (let i=0; i<num; i++) {
-        t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;
-        t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;
+        t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;
+        t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;
     }
     plot_t = cb.checked;
 }
 
 function plot_w_box_update(cb) {
     for (let i=0; i<num; i++) {
-        w1array[i] = (p.w1+wmax)*wscale;// + offset;
-        w2array[i] = (p.w2+wmax)*wscale;// + offset;
+        w1array[i] = (p.w1+wmax)*wscale;
+        w2array[i] = (p.w2+wmax)*wscale;
     }
     plot_w = cb.checked;
 }
@@ -75,10 +75,10 @@ const pendp5 = ( sketch ) => {
         document.getElementById("plot_t").checked = true;
         document.getElementById("plot_w").checked = true;
         for (let i=0; i<num; i++) {
-            w1array[i] = (p.w1+wmax)*wscale;// + offset;
-            w2array[i] = (p.w2+wmax)*wscale;// + offset;
-            t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta1*tscale + offset;
-            t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta2*tscale + offset;
+            w1array[i] = (p.w1+wmax)*wscale;
+            w2array[i] = (p.w2+wmax)*wscale;
+            t1array[i] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;
+            t2array[i] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;
         }
     }
 
@@ -94,10 +94,10 @@ const pendp5 = ( sketch ) => {
             }
 
             p.update();
-            w1array[num - 1] = (p.w1+wmax)*wscale;// + offset;
-            w2array[num - 1] = (p.w2+wmax)*wscale;// + offset;
-            t1array[num - 1] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta1*tscale + offset;
-            t2array[num - 1] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;// + offset;//p.theta2*tscale + offset;
+            w1array[num - 1] = (p.w1+wmax)*wscale;
+            w2array[num - 1] = (p.w2+wmax)*wscale;
+            t1array[num - 1] = (p.theta1 + Math.PI) % (2*Math.PI)*tscale;
+            t2array[num - 1] = (p.theta2 + Math.PI) % (2*Math.PI)*tscale;
 
             if(plot_w){
                 for ( let j = 1; j < num; j++ ) {
@@ -200,20 +200,14 @@ function update_pend(){
         t1array = [];
         t2array = [];
         for (let i=0; i<num; i++) {
-            w1array[i] = (omega1_input+wmax)*wscale;// + offset;
-            w2array[i] = (omega2_input+wmax)*wscale;// + offset;
-            t1array[i] = (theta1_input + Math.PI) % (2*Math.PI)*tscale;// + offset;
-            t2array[i] = (theta2_input + Math.PI) % (2*Math.PI)*tscale;// + offset;
+            w1array[i] = (omega1_input+wmax)*wscale;
+            w2array[i] = (omega2_input+wmax)*wscale;
+            t1array[i] = (theta1_input + Math.PI) % (2*Math.PI)*tscale;
+            t2array[i] = (theta2_input + Math.PI) % (2*Math.PI)*tscale;
         }
     }
 }
 
-
-// function keyPressed() {
-//   if (pendinst.keyCode === pendinst.ENTER) {
-//   	update_params();
-//   }
-// }
 
 document.onkeypress = function(e) {
     if (e.which == 13){
@@ -233,13 +227,3 @@ document.onkeypress = function(e) {
 
 
 let pendinst = new p5(pendp5, document.getElementById('pendulum'))
-
-//const button = document.getElementById("button1");
-
-//button.addEventListener("click", (event) => {
-//  update_params();
-//});
-
-//btn.addEventListener("tap", (event) => {
-//  update_params();
-//});
