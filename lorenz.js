@@ -20,8 +20,8 @@ const lorenz = ( sketch ) => {
 		width = Math.min(Math.min(sketch.windowWidth, sketch.windowHeight)*15/16, 800);
 	  	height = width;
 	  	offset = width/2;
-	  	scale = 10;
-	  	vscale = 1;
+	  	scale = 10*width/800;
+	  	vscale = 1*width/800;
 	  	xspeed = 0.01;
 	  	yspeed = 0.02;
 	  	zspeed = 0.01;
