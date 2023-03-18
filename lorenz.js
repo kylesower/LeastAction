@@ -20,10 +20,12 @@ const lorenz = ( sketch ) => {
 		width = Math.min(Math.min(sketch.windowWidth, sketch.windowHeight)*15/16, 800);
 	  	height = width;
 	  	offset = width/2;
-	  	scale = 10*width/800;
-	  	coordcolorscl = 800/width/2;
-	  	vscale = 1*width/800;
-	  	velcolorscl = 800/width/2;
+	  	windowScale = width/800;
+	  	console.log(windowScale)
+	  	scale = 10*windowScale;
+	  	coordcolorscl = 1/windowScale/2;
+	  	vscale = 1*windowScale;
+	  	velcolorscl = 1/windowScale/2;
 	  	xspeed = 0.01;
 	  	yspeed = 0.02;
 	  	zspeed = 0.01;
@@ -92,7 +94,7 @@ const lorenz = ( sketch ) => {
 			}
 			if (plot_vels) {
 			    for ( let j = 1; j < num_l; j++ ) {
-			        sketch.stroke(220, (200+vzarray[j])*velcolorscl, 40);
+			        sketch.stroke(220, (200*windowScale+vzarray[j])*velcolorscl, 40);
 			        prevcoords = rotate_x(vxarray[j - 1], vyarray[j - 1], vzarray[j - 1]);
 			        prevcoords = rotate_y(...prevcoords);
 			        newcoords = rotate_x(vxarray[j], vyarray[j], vzarray[j]);
