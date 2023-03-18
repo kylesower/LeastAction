@@ -21,7 +21,9 @@ const lorenz = ( sketch ) => {
 	  	height = width;
 	  	offset = width/2;
 	  	scale = 10*width/800;
+	  	coordcolorscl = 800/width/2;
 	  	vscale = 1*width/800;
+	  	velcolorscl = 800/width/2;
 	  	xspeed = 0.01;
 	  	yspeed = 0.02;
 	  	zspeed = 0.01;
@@ -80,7 +82,7 @@ const lorenz = ( sketch ) => {
 
 		 	if (plot_coords){
 			 	for ( let j = 1; j < num_l; j++ ) {
-			        sketch.stroke(zarray[j]/2, 20, 250);
+			        sketch.stroke(zarray[j]*coordcolorscl, 20, 250);
 			        prevcoords = rotate_x(xarray[j - 1]-cpx, yarray[j - 1]-cpy, zarray[j - 1]-cpz);
 			        prevcoords = rotate_y(...prevcoords);
 			        newcoords = rotate_x(xarray[j]-cpx, yarray[j]-cpy, zarray[j]-cpz);
@@ -90,7 +92,7 @@ const lorenz = ( sketch ) => {
 			}
 			if (plot_vels) {
 			    for ( let j = 1; j < num_l; j++ ) {
-			        sketch.stroke(220, (200+vzarray[j])/2, 40);
+			        sketch.stroke(220, (200+vzarray[j])*velcolorscl, 40);
 			        prevcoords = rotate_x(vxarray[j - 1], vyarray[j - 1], vzarray[j - 1]);
 			        prevcoords = rotate_y(...prevcoords);
 			        newcoords = rotate_x(vxarray[j], vyarray[j], vzarray[j]);
