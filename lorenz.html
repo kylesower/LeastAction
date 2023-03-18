@@ -14,8 +14,7 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']],
-          tags: 'ams',
-          color: 'white'
+          tags: 'ams'
         },
         svg: {
           fontCache: 'global'
@@ -54,8 +53,7 @@
 Plots: <label><input type="checkbox" id="plot_coords" name="plot_coords" value="plot_coords" onclick="plot_coord_update(this)" class="checkbox">Coordinates</label>
   <label><input type="checkbox" id="plot_vels" name="plot_vels" value="plot_vels" onclick="plot_vel_update(this)" class="checkbox">Velocities</label>
 </div>
-<div>
-
+<div id="lorenz">
   <script src="lorenz.js"></script>
  </div>
 

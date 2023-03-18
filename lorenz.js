@@ -1,120 +1,125 @@
-function setup() {
-	x0 = -13.8;
-	y0 = -10.6;
-	z0 = 36.8;
-	sigma = 10;
-	rho = 25;
-	beta = 7/3;
-	dt = 2;
-	xarray = [];
-	yarray = [];
-	zarray = [];
-	vxarray = [];
-	vyarray = [];
-	vzarray = [];
-	num = 4000;
-	play_animation_lorenz = false;
-	plot_coords = true;
-	plot_vels = true;
-	width = Math.min(Math.min(windowWidth, windowHeight)*15/16, 800);
-  	height = width;
-  	offset = width/2;
-  	scale = 10;
-  	vscale = 1;
-  	xspeed = 0.01;
-  	yspeed = 0.02;
-  	zspeed = 0.01;
-  	createCanvas(width, height);
-  	frameRate(60);
-  	a = new attractor(x0, y0, z0, sigma, rho, beta);
-  	vx0 = a.vx;
-  	vy0 = a.vy;
-  	vz0 = a.vz;
-  	for (let i=0; i<num; i++) {
-	    xarray[i] = x0*scale
-	    yarray[i] = y0*scale
-	    zarray[i] = z0*scale
-		vxarray[i] = vx0*vscale
-	    vyarray[i] = vy0*vscale
-	    vzarray[i] = vz0*vscale
-  	}
-  	cpx1 = a.cx1;
-  	cpy1 = a.cy1;
-  	cpz1 = a.cz1;
-  	cpx2 = a.cx2;
-  	cpy2 = a.cy2;
-  	cpz2 = a.cz2;
-  	cpx = (cpx1 + cpx2) / 2 * scale;
-  	cpy = (cpy1 + cpy2) / 2 * scale;
-  	cpz = (cpz1 + cpz2) / 2 * scale;
-  	document.getElementById("x0").value = x0;
-  	document.getElementById("y0").value = y0;
-  	document.getElementById("z0").value = z0;
-  	document.getElementById("sigma").value = sigma;
-  	document.getElementById("rho").value = rho;
-  	document.getElementById("beta").value = beta;
-  	document.getElementById("plot_coords").checked = true;
-  	document.getElementById("plot_vels").checked = true;
+const lorenz = ( sketch ) => {
+
+	sketch.setup = () => {
+		x0 = -13.8;
+		y0 = -10.6;
+		z0 = 36.8;
+		sigma = 10;
+		rho = 25;
+		beta = 7/3;
+		dt = 2;
+		xarray = [];
+		yarray = [];
+		zarray = [];
+		vxarray = [];
+		vyarray = [];
+		vzarray = [];
+		num = 4000;
+		play_animation_lorenz = false;
+		plot_coords = true;
+		plot_vels = true;
+		width = Math.min(Math.min(sketch.windowWidth, sketch.windowHeight)*15/16, 800);
+	  	height = width;
+	  	offset = width/2;
+	  	scale = 10;
+	  	vscale = 1;
+	  	xspeed = 0.01;
+	  	yspeed = 0.02;
+	  	zspeed = 0.01;
+	  	sketch.createCanvas(width, height);
+	  	sketch.frameRate(60);
+	  	a = new attractor(x0, y0, z0, sigma, rho, beta);
+	  	vx0 = a.vx;
+	  	vy0 = a.vy;
+	  	vz0 = a.vz;
+	  	for (let i=0; i<num; i++) {
+		    xarray[i] = x0*scale
+		    yarray[i] = y0*scale
+		    zarray[i] = z0*scale
+			vxarray[i] = vx0*vscale
+		    vyarray[i] = vy0*vscale
+		    vzarray[i] = vz0*vscale
+	  	}
+	  	cpx1 = a.cx1;
+	  	cpy1 = a.cy1;
+	  	cpz1 = a.cz1;
+	  	cpx2 = a.cx2;
+	  	cpy2 = a.cy2;
+	  	cpz2 = a.cz2;
+	  	cpx = (cpx1 + cpx2) / 2 * scale;
+	  	cpy = (cpy1 + cpy2) / 2 * scale;
+	  	cpz = (cpz1 + cpz2) / 2 * scale;
+	  	document.getElementById("x0").value = x0;
+	  	document.getElementById("y0").value = y0;
+	  	document.getElementById("z0").value = z0;
+	  	document.getElementById("sigma").value = sigma;
+	  	document.getElementById("rho").value = rho;
+	  	document.getElementById("beta").value = beta;
+	  	document.getElementById("plot_coords").checked = true;
+	  	document.getElementById("plot_vels").checked = true;
+	}
+
+
+	sketch.draw = () => {
+		sketch.background(51);
+		if (play_animation_lorenz){
+			for ( let i = 1; i < num; i++ ) {
+			    xarray[i - 1] = xarray[i];
+			    yarray[i - 1] = yarray[i];
+			    zarray[i - 1] = zarray[i];
+			    vxarray[i - 1] = vxarray[i];
+			    vyarray[i - 1] = vyarray[i];
+			    vzarray[i - 1] = vzarray[i];
+		 	}
+			a.update();
+			xarray[num - 1] = a.x*scale;
+		 	yarray[num - 1] = a.y*scale;
+		 	zarray[num - 1] = a.z*scale;
+		 	vxarray[num - 1] = a.vx*vscale;
+		 	vyarray[num - 1] = a.vy*vscale;
+		 	vzarray[num - 1] = a.vz*vscale;
+
+		 	if (plot_coords){
+			 	for ( let j = 1; j < num; j++ ) {
+			        sketch.stroke(zarray[j]/2, 20, 250);
+			        prevcoords = rotate_x(xarray[j - 1]-cpx, yarray[j - 1]-cpy, zarray[j - 1]-cpz);
+			        prevcoords = rotate_y(...prevcoords);
+			        newcoords = rotate_x(xarray[j]-cpx, yarray[j]-cpy, zarray[j]-cpz);
+			        newcoords = rotate_y(...newcoords);
+			        sketch.line(prevcoords[0]+offset, prevcoords[1]+offset, newcoords[0]+offset, newcoords[1]+offset);
+			    }
+			}
+			if (plot_vels) {
+			    for ( let j = 1; j < num; j++ ) {
+			        sketch.stroke(220, (200+vzarray[j])/2, 40);
+			        prevcoords = rotate_x(vxarray[j - 1], vyarray[j - 1], vzarray[j - 1]);
+			        prevcoords = rotate_y(...prevcoords);
+			        newcoords = rotate_x(vxarray[j], vyarray[j], vzarray[j]);
+			        newcoords = rotate_y(...newcoords);
+			        sketch.line(prevcoords[0]+offset, prevcoords[1]+offset, newcoords[0]+offset, newcoords[1]+offset);
+			    }
+			}
+	    }
+	}
+
 }
 
-
-function draw() {
-	background(51);
-	if (play_animation_lorenz){
-		for ( let i = 1; i < num; i++ ) {
-		    xarray[i - 1] = xarray[i];
-		    yarray[i - 1] = yarray[i];
-		    zarray[i - 1] = zarray[i];
-		    vxarray[i - 1] = vxarray[i];
-		    vyarray[i - 1] = vyarray[i];
-		    vzarray[i - 1] = vzarray[i];
-	 	}
-		a.update();
-		xarray[num - 1] = a.x*scale;
-	 	yarray[num - 1] = a.y*scale;
-	 	zarray[num - 1] = a.z*scale;
-	 	vxarray[num - 1] = a.vx*vscale;
-	 	vyarray[num - 1] = a.vy*vscale;
-	 	vzarray[num - 1] = a.vz*vscale;
-
-	 	if (plot_coords){
-		 	for ( let j = 1; j < num; j++ ) {
-		        stroke(zarray[j]/2, 20, 250);
-		        prevcoords = rotate_x(xarray[j - 1]-cpx, yarray[j - 1]-cpy, zarray[j - 1]-cpz);
-		        prevcoords = rotate_y(...prevcoords);
-		        newcoords = rotate_x(xarray[j]-cpx, yarray[j]-cpy, zarray[j]-cpz);
-		        newcoords = rotate_y(...newcoords);
-		        line(prevcoords[0]+offset, prevcoords[1]+offset, newcoords[0]+offset, newcoords[1]+offset);
-		    }
-		}
-		if (plot_vels) {
-		    for ( let j = 1; j < num; j++ ) {
-		        stroke(220, (200+vzarray[j])/2, 40);
-		        prevcoords = rotate_x(vxarray[j - 1], vyarray[j - 1], vzarray[j - 1]);
-		        prevcoords = rotate_y(...prevcoords);
-		        newcoords = rotate_x(vxarray[j], vyarray[j], vzarray[j]);
-		        newcoords = rotate_y(...newcoords);
-		        line(prevcoords[0]+offset, prevcoords[1]+offset, newcoords[0]+offset, newcoords[1]+offset);
-		    }
-		}
-    }
-}
-
+let myp5 = new p5(s, document.getElementById('lorenz'))
 
 function rotate_x(x, y, z) {
-	theta = xspeed*frameCount;
+	theta = xspeed*myp5.frameCount;
 	return [x, Math.cos(theta)*y - Math.sin(theta)*z, Math.sin(theta)*y + Math.cos(theta)*z];
 }
 
 
 function rotate_y(x, y, z) {
-	theta = yspeed*frameCount;
+	theta = yspeed*myp5.frameCount;
 	return [Math.cos(theta)*x + Math.sin(theta)*z, y,-Math.sin(theta)*x + Math.cos(theta)*z];
 }
 
 
 function rotate_z(x, y, z) {
-	theta = zspeed*frameCount;
+	theta = zspeed*myp5.frameCount;
 	return [Math.cos(theta)*x - Math.sin(theta)*y, Math.sin(theta)*x + Math.cos(theta)*y, z];
 }
 
